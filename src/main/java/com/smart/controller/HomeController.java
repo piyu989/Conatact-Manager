@@ -35,4 +35,9 @@ public class HomeController {
 		m.addAttribute("tittle","about page");
 		return "about";
 	}
+	@RequestMapping("/signup")
+	public String signup(Model m) {
+		m.addAttribute("tittle","register - about sontact manager");
+		return "signup";
+	}
 }
