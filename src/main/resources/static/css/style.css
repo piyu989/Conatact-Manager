@@ -1,8 +1,8 @@
 body{
-	background-color: aliceblue;
+	background-color: aliceblue!important;
 }
 .bg-primary{
-	background:rgb(255, 128, 128);
+	background:rgb(255, 128, 128)!important;
 }
 .banner{
 	width: 100%;
@@ -14,9 +14,19 @@ body{
 	
 
 }
+
 .text-center{
-	position: absolute;
-	top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+	text-align: center; /* Center the text horizontally */
+    /* Add some padding for content */
+    position: absolute; /* Position the div absolutely */
+    left:35%;
+    top: 1%; 
+    background: aliceblue!important;
+}
+.my-card{
+	padding: 20px;
+	background: ffffff;
+}
+.form-group{
+	top: 80%;
 }
