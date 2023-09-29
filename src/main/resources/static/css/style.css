@@ -15,6 +15,12 @@ body{
 
 }
 
+.textcenter{
+	text-align: center;
+	position: absolute; /* Position the div absolutely */
+    left:35%;
+    top: 35%; 
+}
 .text-center{
 	text-align: center; /* Center the text horizontally */
     /* Add some padding for content */
@@ -28,5 +34,5 @@ body{
 	background: ffffff;
 }
 .form-group{
-	top: 80%;
+	top: 8%;
 }
