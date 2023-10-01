@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smart.dao.userRepo;
 import com.smart.entites.User;
+import com.smart.helper.Message;
 
-
-//import com.smart.dao.userRepo;
-//import com.smart.entites.Contact;
-//import com.smart.entites.User;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -39,13 +37,27 @@ public class HomeController {
 		return "signup";
 	}
 	@PostMapping("do_register")
-	public String registerUser(@ModelAttribute("user") User user,@RequestParam(value="agreement",defaultValue = "false")Boolean agreement,Model model) {
-		user.setRole("role");
-		user.setActiveUser(true);
-		System.out.println("agreement "+agreement);
-		System.out.println(user);
-		User result=this.userrepo.save(user);
-		model.addAttribute("user",result);
-		return "signup";
+	public String registerUser(@ModelAttribute("user") User user,@RequestParam(value="agreement",defaultValue = "false")Boolean agreement,Model model,HttpSession session) {
+		try {
+			if(!agreement) {
+				System.out.println("you have not accepted terms and condition");
+				throw new Exception("not agreed terms and conditioin");
+			}
+			user.setRole("role");
+//			user.setImageUrl(null);
+			user.setActiveUser(true);
+			System.out.println("agreement "+agreement);
+			System.out.println(user);
+			User result=this.userrepo.save(user);
+			model.addAttribute("user",result);
+			session.setAttribute("message", new Message("something went wrong","akert-error"));
+			return "signup";
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("user",user);
+			session.setAttribute("message", new Message("something went wrong"+e.getMessage(),"akert-error"));
+			return "signup";
+		}
 	}
 }
