@@ -9,10 +9,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 offset-md-2">
-					<div class="my-card mt-3">
-						<div class="alert alert-primary" role="alert">
-  							you have not accepted terms and condition!!
-						</div>
+					<div class="my-card mt-1">
+					<div th:if="${session.message}" class="alert" role="alert" >
+					</div>
+    
 						<h2 class="text-center">register here</h2>
 						
 						<form action="" th:action="@{/do_register}" method="post" th:object="${user}">
