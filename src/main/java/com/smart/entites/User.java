@@ -3,6 +3,11 @@ package com.smart.entites;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,10 +30,14 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@NotBlank(message="name field is required")
+	@Size(min=2, max=30,message="min 2 and maximum 30 are allowed")
 	private String name;
 	private String role;
+	@Pattern(regexp ="^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")
 	private String password;
 	@Column(unique = true)
+	@Email(regexp = "^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+$")
 	private String email;
 	private boolean activeUser;
 	private String imageUrl;

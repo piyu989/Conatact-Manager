@@ -9,24 +9,30 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 offset-md-2">
-					<div class="my-card mt-3">
-						<div class="alert alert-primary" role="alert">
-  							you have not accepted terms and condition!!
-						</div>
+					<div class="my-card mt-1">
+					<div th:if="${session.message}" class="alert" role="alert">
+					</div>
+    
 						<h2 class="text-center">register here</h2>
 						
-						<form action="" th:action="@{/do_register}" method="post" th:object="${user}">
+						<form novalidate action="" th:action="@{/do_register}" method="post" th:object="${user}">
 							<div class="form-group">
 							    <label for="name_field">Your Name</label>
 							    <input 
-							    name="name"
-							    type="text" 
-							    class="form-control" 
-							    id="name_field" 
-							    aria-describedby="emailHelp" 
-							    placeholder="Enter here"
-							    required
-							  </div>
+							        name="name"
+							        type="text" 
+							        class="form-control" 
+							        th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+							        id="name_field" 
+							        aria-describedby="emailHelp" 
+							        placeholder="Enter here"
+							        required
+							    </input>
+							</div>
+							
+							<div class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}">
+							    Please provide a valid name.
+							</div>
 							  
 							  <div class="form-group">
 							    <label for="email_field">Email address</label>
