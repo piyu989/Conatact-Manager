@@ -39,17 +39,24 @@ public class HomeController {
 		return "signup";
 	}
 	@PostMapping("do_register")
+<<<<<<< HEAD
 	public String registerUser(@Valid @ModelAttribute("user") User user,BindingResult result,@RequestParam(value="agreement",defaultValue = "false")
 								boolean agreement,Model model,HttpSession session) {
+=======
+	public String registerUser(@ModelAttribute("user") User user,@RequestParam(value="agreement",defaultValue = "false")boolean agreement,Model model,HttpSession session) {
+>>>>>>> baa6e7d1476679bb7f2c1009427048f0542313c0
 		try {
 			if(!agreement) {
 				System.out.println("not accpeted");
 				throw new Exception("you have not conformend privacy");
 			}
+<<<<<<< HEAD
 			if(result.hasErrors()) {
 				model.addAttribute("user",user);
 				return "signup";
 			}
+=======
+>>>>>>> baa6e7d1476679bb7f2c1009427048f0542313c0
 			user.setRole("java developer");
 			user.setActiveUser(true);
 			User u=this.userrepo.save(user);
